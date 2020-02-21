@@ -124,6 +124,23 @@ The according instruction encoding format is:
 |:-:|:-:|:-:|:-:|:-:|:-:|
 |6|5|5|5|5|6|
 
+## sb
+
+stores the content of a register (a byte) to a memory location
+addressed by a register and an immediate
+
+The format of the instruction is:
+
+`sb $ra, imm($rb)`,
+
+where the byte in `$ra` is stored at address `$rb + imm`.
+
+The according instruction encoding format is:
+
+|`101000`|`$ra`|`$rb`|`imm`|
+|:-:|:-:|:-:|:-:|
+|6|5|5|16|
+
 ## slt
 
 assigns a value to a register depending on whether the content
