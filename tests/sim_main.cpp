@@ -3,6 +3,7 @@
 #include "Vfsm.h"
 
 #include <iostream>
+#include <stdio.h>
 
 int main(int argc, char** argv){
     Verilated::commandArgs(argc, argv);
@@ -10,11 +11,10 @@ int main(int argc, char** argv){
     while(!Verilated::gotFinish()){
         top->clk = top->clk ^ 1;
         top->eval();
-        if(top->cu_out == 2){
-            std::cout << "2\n"; 
-        }
-        else{
-            std::cout << "else\n";
+        // print the current state if there
+        // is has changed (only if clk is 1)
+        if(top->clk){
+            printf("%d\n",top->cu_out);
         }
     }
 

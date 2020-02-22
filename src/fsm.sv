@@ -44,6 +44,18 @@ module cu   (input  logic clk,
         endcase
 
     // output logic
-    assign cu_out = (state == S00) ? ((state == S01) ? 1 : 2) : 0;
+    always @(posedge clk)
+        case(state)
+            S00:    begin
+                        cu_out <= 0;
+                    end
+            S01:    begin
+                        cu_out <= 1;
+                    end
+            S02:    begin
+                        cu_out <= 2;
+                    end
+            default:    cu_out <= 0;
+        endcase
 
 endmodule 
