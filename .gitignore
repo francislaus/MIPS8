@@ -1,2 +1,5 @@
 # ignore the entire simulation build directory
 tests/obj_dir/
+
+# ignore vs code file
+.vscode/

@@ -1,12 +1,21 @@
 #include <verilated.h>
 
-#include "Vsimple_top.h"
+#include "Vfsm.h"
+
+#include <iostream>
 
 int main(int argc, char** argv){
     Verilated::commandArgs(argc, argv);
-    Vsimple_top* top = new Vsimple_top;
+    Vfsm* top = new Vfsm;
     while(!Verilated::gotFinish()){
+        top->clk = top->clk ^ 1;
         top->eval();
+        if(top->cu_out == 2){
+            std::cout << "2\n"; 
+        }
+        else{
+            std::cout << "else\n";
+        }
     }
 
     top->final();

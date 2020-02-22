@@ -7,7 +7,7 @@ Purpose: implement the finite state machine model
 
 module cu   (input  logic clk,
              input  logic reset,
-             output logic [1:0] y);
+             output logic [1:0] cu_out);
 
     // define own state type
     // currently 16 different states possible
@@ -44,6 +44,6 @@ module cu   (input  logic clk,
         endcase
 
     // output logic
-    assign y = (state == S00) ? ((state == S01) ? 1 : 2) : 0;
+    assign cu_out = (state == S00) ? ((state == S01) ? 1 : 2) : 0;
 
 endmodule 
