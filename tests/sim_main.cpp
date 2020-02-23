@@ -14,7 +14,7 @@ int main(int argc, char** argv){
         // print the current state if there
         // is has changed (only if clk is 1)
         if(top->clk){
-            printf("%d\n",top->cu_out);
+            printf("%d\n",top->pcwrite);
         }
     }
 

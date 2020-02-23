@@ -7,7 +7,18 @@ Purpose: implement the finite state machine model
 
 module cu   (input  logic clk,
              input  logic reset,
-             output logic [1:0] cu_out);
+             output logic memtoreg,
+             output logic memwrite,
+             output logic regdst,
+             output logic iord,
+             output logic pcwrite,
+             output logic branch,
+             output logic alusrcA,
+             output logic regwrite,
+             output logic [1:0] pcsrc,
+             output logic [1:0] alusrcB,
+             output logic [2:0] alucontrol,
+             output logic [3:0] irwrite);
 
     // define own state type
     // currently 16 different states possible
@@ -90,18 +101,34 @@ module cu   (input  logic clk,
         endcase
 
     // output logic
-    always @(posedge clk)
-        case(state)
-            S00:    begin
-                        cu_out <= 0;
-                    end
-            S01:    begin
-                        cu_out <= 1;
-                    end
-            S02:    begin
-                        cu_out <= 2;
-                    end
-            default:    cu_out <= 0;
-        endcase
+    always_comb
+        // initialize all outputs to zero and then set
+        // the changed ones accordingly
+        begin
+            memtoreg = 0;
+            memwrite = 0;
+            regdst = 0;
+            iord = 0;
+            pcwrite = 0;
+            branch = 0;
+            alusrcA = 0;
+            regwrite = 0;
+            pcsrc = 2'b00;
+            alusrcB = 2'b00;
+            alucontrol = 3'b000;
+            irwrite = 4'b0000;
+            case(state)
+                S00:    begin
+                            pcwrite = 0;
+                        end
+                S01:    begin
+                            pcwrite = 0;
+                        end
+                S02:    begin
+                            pcwrite = 0;
+                        end
+                default:    pcwrite = 0;
+            endcase
+        end
 
 endmodule 
