@@ -9,13 +9,27 @@ int main(int argc, char** argv){
     Verilated::commandArgs(argc, argv);
     Valudecoder* top = new Valudecoder;
     while(!Verilated::gotFinish()){
-        //top->clk = top->clk ^ 1;
+        // here we test three input combinations
+
+        // test addi
+        top->aluop = 0b00;
         top->eval();
-        // print the current state if there
-        // is has changed (only if clk is 1)
-        /*if(top->clk){
-            printf("%d\n",top->pcwrite);
-        }*/
+        // we expect the output 010
+        printf("ADDI: %d\n", (top->alucontrol == 0b010));
+
+        // test and
+        top->aluop = 0b10;
+        top->funct = 0b100100;
+        top->eval();
+        // we expect the output 000
+        printf("AND: %d\n", (top->alucontrol == 0b000));
+
+        // test slt
+        top->aluop = 0b10;
+         top->funct = 0b101010;
+        top->eval();
+        // we expect the output 010
+        printf("SLT: %d\n", (top->alucontrol == 0b111));
     }
 
     top->final();
