@@ -6,5 +6,9 @@ alu:
 	verilator -cc -exe ../src/alu.sv sim_alu.cpp -I../src
 	make -j 4 -C obj_dir -f Valu.mk
 
+aludecoder:
+	verilator -cc -exe ../src/aludecoder.sv sim_aludecoder.cpp -I../src
+	make -j 4 -C obj_dir -f Valudecoder.mk
+
 clean:
 	rm -rf obj_dir/

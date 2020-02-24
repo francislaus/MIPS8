@@ -30,7 +30,7 @@ module cu   (input  logic clk,
     statetype state, nextstate;
 
     // define own type for different instructions
-    typedef enum logic [6:0]
+    typedef enum logic [5:0]
         {LB = 6'b100000,
          SB = 6'b101000,
          BEQ = 6'b000100,
