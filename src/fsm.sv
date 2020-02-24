@@ -17,6 +17,7 @@ module cu   (input  logic clk,
              output logic regwrite,
              output logic [1:0] pcsrc,
              output logic [1:0] alusrcB,
+             output logic [1:0] aluop,
              output logic [2:0] alucontrol,
              output logic [3:0] irwrite);
 
@@ -115,17 +116,66 @@ module cu   (input  logic clk,
             regwrite = 0;
             pcsrc = 2'b00;
             alusrcB = 2'b00;
+            aluop = 2'b00;
             alucontrol = 3'b000;
             irwrite = 4'b0000;
             case(state)
                 S00:    begin
-                            pcwrite = 0;
+                            alusrcB = 2'b01;
+                            pcwrite = 1;
+                            irwrite = 4'b0001;
                         end
                 S01:    begin
-                            pcwrite = 0;
+                            alusrcB = 2'b01;
+                            pcwrite = 1;
+                            irwrite = 4'b0010;
                         end
                 S02:    begin
-                            pcwrite = 0;
+                            alusrcB = 2'b01;
+                            pcwrite = 1;
+                            irwrite = 4'b0100;
+                        end
+                S03:    begin
+                            alusrcB = 2'b01;
+                            pcwrite = 1;
+                            irwrite = 4'b1000;
+                        end
+                S04:    begin
+                            alusrcB = 2'b11;
+                            alusrcA = 1;
+                        end
+                S05:    begin
+                            alusrcB = 2'b10;
+                            alusrcA = 1;
+                        end
+                S06:    begin
+                            iord = 1;
+                        end
+                S07:    begin
+                            regwrite = 1;
+                            memtoreg = 1;
+                        end
+                S08:    begin
+                            memwrite = 1;
+                            iord = 1;
+                        end
+                S09:    begin
+                            alusrcA = 1;
+                            aluop = 2'b10;
+                        end
+                S10:    begin
+                            regdst = 1;
+                            regwrite = 1;
+                        end
+                S11:    begin
+                            alusrcA = 1;
+                            aluop = 2'b01;
+                            branch = 1;
+                            pcsrc = 2'b01;
+                        end
+                S12:    begin
+                            pcwrite = 1;
+                            pcsrc = 2'b10;
                         end
                 default:    pcwrite = 0;
             endcase
