@@ -1,4 +1,4 @@
-module flop
+module flop_enr
     #(parameter width = 8)
     (input logic clk,
      input logic en,
