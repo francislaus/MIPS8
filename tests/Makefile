@@ -10,5 +10,9 @@ aludecoder:
 	verilator -cc -exe ../src/aludecoder.sv sim_aludecoder.cpp -I../src
 	make -j 4 -C obj_dir -f Valudecoder.mk
 
+regfile:
+	verilator -cc -exe ../src/regfile.sv sim_regfile.cpp -I../src
+	make -j 4 -C obj_dir -f Vregfile.mk
+
 clean:
 	rm -rf obj_dir/
