@@ -5,7 +5,7 @@ Purpose: implement the finite state machine model
          of the CPU
 */
 
-module fsm   (input  logic clk,
+module fsm  (input  logic clk,
              input  logic reset,
              output logic memtoreg,
              output logic memwrite,

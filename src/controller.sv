@@ -27,6 +27,7 @@ module controller   (input logic clk,
                     iord, pcwrite, branch, alusrcA, regwrite,
                     pcsrc, alusrcB, aluop, alucontrol, irwrite);
 
+    // the decoder for the alu
     aludecoder aludec(aluop, funct, alucontrol);
 
 endmodule
