@@ -14,12 +14,13 @@ module datapath (input logic clk,
                  input logic [7:0] memdata,
                  output logic zero,
                  output logic [31:0] instr,
+                 output logic [7:0] adr,
                  output logic [7:0] writedata);
 
     logic [4:0] ra1, ra2, wa1;
 
     logic [7:0] aluout, aluresult, zero, immx4,
-                imm, pc,pcnext, adr, rd1, rd2,
+                imm, pc,pcnext, rd1, rd2,
                 A, srcA, srcB, data, wd1;
 
     

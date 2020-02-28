@@ -18,5 +18,13 @@ datapath:
 	verilator -cc -exe ../src/datapath.sv sim_datapath.cpp -I../src
 	make -j 4 -C obj_dir -f Vdatapath.mk
 
+controller:
+	verilator -cc -exe ../src/controller.sv sim_controller.cpp -I../src
+	make -j 4 -C obj_dir -f Vcontroller.mk
+
+processor:
+	verilator -cc -exe ../src/processor.sv sim_processor.cpp -I../src
+	make -j 4 -C obj_dir -f Vprocessor.mk
+
 clean:
 	rm -rf obj_dir/
