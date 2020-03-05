@@ -7,6 +7,7 @@ Purpose: implement the finite state machine model
 
 module fsm  (input  logic clk,
              input  logic reset,
+             input logic [5:0] op_code,
              output logic memtoreg,
              output logic memwrite,
              output logic regdst,
@@ -38,6 +39,8 @@ module fsm  (input  logic clk,
          RTYPE = 6'b000000} opcode;
 
     opcode op;
+
+    assign op = op_code;
 
     // state register
     // this is flip-flop holding the current state

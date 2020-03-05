@@ -23,7 +23,7 @@ module controller   (input logic clk,
     assign pcen = pcwrite | (branch & zero);
 
     // the final state machine
-    fsm fsm_instance(clk, reset, memtoreg, memwrite, regdst,
+    fsm fsm_instance(clk, reset, op, memtoreg, memwrite, regdst,
                     iord, pcwrite, branch, alusrcA, regwrite,
                     pcsrc, alusrcB, aluop, alucontrol, irwrite);
 
