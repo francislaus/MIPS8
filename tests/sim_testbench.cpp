@@ -8,7 +8,6 @@
 int main(int argc, char** argv){
     Verilated::commandArgs(argc, argv);
     Vtestbench* top = new Vtestbench;
-    
     while(!Verilated::gotFinish()){
         //top->clk = top->clk ^ 1;
         top->eval();
