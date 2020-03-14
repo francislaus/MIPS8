@@ -26,5 +26,10 @@ processor:
 	verilator -cc -exe ../src/processor.sv sim_processor.cpp -I../src
 	make -j 4 -C obj_dir -f Vprocessor.mk
 
+testbench:
+	verilator -cc -exe ../src/testbench.sv sim_testbench.cpp -I../src
+	make -j 4 -C obj_dir -f Vtestbench.mk
+
+
 clean:
 	rm -rf obj_dir/
