@@ -12,12 +12,15 @@ void print_info(Vprocessor *proc)
     printf("alures: %d\n", proc->processor__DOT__data__DOT__aluresult);
     printf("aluout: %d\n", proc->processor__DOT__data__DOT__aluout);
     printf("state: %d\n", proc->processor__DOT__cont__DOT__fsm_instance__DOT__state);
-    
+    printf("srcA: %d\n", proc->processor__DOT__data__DOT__srcA);
+    printf("srcB: %d\n", proc->processor__DOT__data__DOT__srcB);
+    printf("A: %d\n", proc->processor__DOT__data__DOT__A);
+    printf("aluSrcA: %d\n", proc->processor__DOT__alusrcA);
+
     printf("inst0: %d\n", proc->processor__DOT__data__DOT____Vcellout__inst0_ff____pinNumber4);
     printf("inst1: %d\n", proc->processor__DOT__data__DOT____Vcellout__inst1_ff____pinNumber4);
     printf("inst2: %d\n", proc->processor__DOT__data__DOT____Vcellout__inst2_ff____pinNumber4);
     printf("inst3: %d\n", proc->processor__DOT__data__DOT____Vcellout__inst3_ff____pinNumber4);
-    printf("instrs: %d\n", proc->processor__DOT__instr);
     printf("\n\n");
 }
 
@@ -63,7 +66,7 @@ void test_add(Vprocessor *top)
     top->eval();
     printf("HERE\n");
     print_info(top);
-    if(top->processor__DOT__data__DOT__aluresult == 0b101)
+    if(top->processor__DOT__data__DOT__aluout == 0b101)
     {
         printf("SUCCESS\n");
     }
@@ -116,7 +119,7 @@ void test_sub(Vprocessor *top)
     top->eval();
     printf("HERE\n");
     print_info(top);
-    if(top->processor__DOT__data__DOT__aluresult == 0b100)
+    if(top->processor__DOT__data__DOT__aluout == 0b100)
     {
         printf("SUCCESS\n");
     }
@@ -151,8 +154,8 @@ int main(int argc, char **argv)
     /*init_regs(top);
     test_add(top);*/
 
-    top->reset = 0b1;
-    top->eval();
+    /*top->reset = 0b1;
+    top->eval();*/
     top->reset = 0b0;
 
     init_regs(top);

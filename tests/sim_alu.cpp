@@ -81,14 +81,14 @@ int main(int argc, char** argv){
         */
 
         top->alucontrol = 0b110;
-        top->a = 0b01010101;
-        top->b = 0b00001111;
+        top->a = 0b00000111;
+        top->b = 0b00000011;
         // evaluate the result
         top->eval();
 
         // printf("alures = %d\n",top->aluresult);
 
-        if(top->aluresult == 0b01000110){
+        if(top->aluresult == 0b00000100){
             printf("SUB - Passed\n");
         }
         else{
